@@ -18,11 +18,8 @@ def homepage(request):
 def newProduct(request):
     form = NewProduct()
     if request.method == "POST":
-        # user = request.user.username
         form = NewProduct(request.POST)
         form.instance.vendor = request.user
-
-        # form.author = user
         if form.is_valid():
             form.save()
             return redirect('homepage')
@@ -30,3 +27,21 @@ def newProduct(request):
         #     messages.error(request,"Could not create product")
     context = {"form":form, "title":"New Product"}
     return render(request,'products/createProduct.html',context)
+
+@login_required
+def updateProduct(request,pk):
+    product = Product.objects.get(id = pk)
+    form = NewProduct(instance=product)
+    if request.method == "POST":
+        form = NewProduct(request.POST,instance = product)
+        if form.is_valid():
+            form.save()
+            return redirect('homepage')
+        # else:
+        #     messages.error(request,"Could not create product")
+    context = {"form":form, "title":"Product Update","product":product}
+    return render(request,'products/updateProduct.html',context)
+def detailProduct(request,pk):
+    product = Product.objects.get(id = pk)
+    context = {"title":"Product Detail","product":product}
+    return render(request,'products/infoProduct.html',context)

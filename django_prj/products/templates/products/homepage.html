@@ -4,10 +4,11 @@
 <div class="ml-2">
 <h1> This is the Homepage</h1>
   {% for product in products %}
-      <h3>{{product.vendor}}</h3><br>
-      <h4>{{product.name}} :</h4>
+      <h4>{{product.vendor}}</h4><br>
+      <h5><a href = "{% url 'detail-product' product.id %}">{{product.name}} :</a></h5>
       <h5>{{product.description}}</h5><br>
       <h6>{{product.date_added}}</h6><br>
+      <a class = "btn btn-info btn-sm " href = "{% url 'update-product' product.id %}">Update</a>
   {% endfor %}
 </div>
 {% endblock %}

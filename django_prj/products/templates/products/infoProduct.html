@@ -1,0 +1,12 @@
+{% extends 'products/base.html' %}
+
+
+{% block content %}
+
+      <h5>{{product.name}} :</h5>
+      <h5>{{product.description}}</h5><br>
+      <h4>{{product.vendor}}</h4><br>
+      <a class = "btn btn-info btn-sm " href = "{% url 'homepage' %}">Back</a>
+      <a class = "btn btn-info btn-sm " href = "#">Add To Cart</a>
+      
+{% endblock %}
