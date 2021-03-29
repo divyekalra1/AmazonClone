@@ -1,0 +1,12 @@
+{% extends 'products/userbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="ml-2">
+      <form method="POST">
+        {% csrf_token %}
+          {{form|crispy}}
+          <button class="btn btn-info" type="submit">Log In</button>
+      </form><br>
+      <h6>Don't have an account yet?<a href = "{% url 'register' %}">Sign Up</a>
+    </div>
+{% endblock %}

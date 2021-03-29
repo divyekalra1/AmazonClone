@@ -1,0 +1,13 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+<div class="ml-2">
+<h1> This is the Homepage</h1>
+  {% for product in products %}
+      <h3>{{product.vendor}}</h3><br>
+      <h4>{{product.name}} :</h4>
+      <h5>{{product.description}}</h5><br>
+      <h6>{{product.date_added}}</h6><br>
+  {% endfor %}
+</div>
+{% endblock %}
