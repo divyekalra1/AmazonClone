@@ -45,3 +45,13 @@ def detailProduct(request,pk):
     product = Product.objects.get(id = pk)
     context = {"title":"Product Detail","product":product}
     return render(request,'products/infoProduct.html',context)
+
+def deleteProduct(request,pk):
+    product = Product.objects.get(id = pk)
+    if request.method == "POST":
+            product.delete()
+            return redirect('homepage')
+        # else:
+        #     messages.error(request,"Could not create product")
+    context = {"title":"Delete Product","product":product}
+    return render(request,'products/deleteProduct.html',context)
