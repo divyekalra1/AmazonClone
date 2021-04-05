@@ -9,7 +9,7 @@ class Product(models.Model):
     vendor = models.ForeignKey(User, on_delete = models.CASCADE)
     def __str__(self):
         # count = self.counting()
-        return f'{self.vendor}\'s Post '
+        return f'{self.vendor}\'s Product '
     # def counting(self):
     #     user = Post.objects.filter(author = f'{self.author}').first()
     #     return user.post_set.count() #user.modelname_set.all() returns the set of all objects of that particular model

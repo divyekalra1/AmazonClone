@@ -1,12 +1,21 @@
-{% extends 'products/userbase.html' %}
+{% extends 'products/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="ml-2">
+      <div class="container">
+        <section class="mb-4">
+          <div class="row wow fadeIn">
+            <div class='col-5'>
+              <h1>Sign In</h1>
+              <h6>Don't have an account yet?<a href = "{% url 'register' %}">Sign Up</a>
+            </div>
+          </div>
+        </section>
+      </div>
       <form method="POST">
         {% csrf_token %}
           {{form|crispy}}
-          <button class="btn btn-info" type="submit">Log In</button>
+          <button class="btn btn-info" type="submit">Sign In</button>
       </form><br>
-      <h6>Don't have an account yet?<a href = "{% url 'register' %}">Sign Up</a>
     </div>
 {% endblock %}

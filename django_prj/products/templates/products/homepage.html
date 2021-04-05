@@ -1,17 +1,52 @@
 {% extends 'products/base.html' %}
+{% load products_extras %}
 
 {% block content %}
-<div class="ml-2">
-<h1> This is the Homepage</h1>
-  {% for product in products %}
-      <h4>{{product.vendor}}</h4><br>
-      <h5><a href = "{% url 'detail-product' product.id %}">{{product.name}} :</a></h5>
-      <h5>{{product.description}}</h5><br>
-      <h5>${{product.price}}</h5><br>
-      <h6>{{product.date_added}}</h6><br>
-      <a class = "btn btn-info btn-sm " href = "{% url 'update-product' product.id %}">Update</a>
-      <a class = "btn btn-info btn-sm " href = "{% url 'delete-product' product.id %}">Delete</a>
 
-  {% endfor %}
-</div>
+<!--Section: Products v.3-->
+<section class="text-center mb-4">
+
+  <div class="row wow fadeIn">
+
+    {% for product in products %}
+    <div class="col-lg-3 col-md-6 mb-4">
+
+      <div class="card">
+
+        <div class="view overlay">
+          <!-- {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" {% endcomment %} -->
+          <!-- <img src="#Image URL here#" class="card-img-top"> -->
+          <a href="{% url 'detail-product' product.id %}">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <div class="card-body text-center">
+
+          <h5>
+            <strong>
+              <a href="{% url 'detail-product' product.id %}" class="dark-grey-text">{{ product.name }}</a>
+                <br>
+                <h6>{{product.description}}</h6>
+                <h4 class="font-weight-bold blue-text">
+                  <strong>$ {{ product.price }}</strong>
+                </h4>
+                <h6>{{product.date_added}}</h6>
+                <h6>{{product.vendor}}</h6>
+                {% if request.user.is_staff %}
+                <a class = "btn btn-info btn-sm " href = "{% url 'update-product' product.id %}">Update</a>
+                <a class = "btn btn-info btn-sm " href = "{% url 'delete-product' product.id %}">Delete</a>
+                {% else %}
+                <a class = "btn btn-info btn-sm " href = "#">Add to Cart</a>
+                {% endif %}
+            </strong>
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</section>
+<!--Section: Products v.3-->
 {% endblock %}
