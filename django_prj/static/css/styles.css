@@ -54,7 +54,7 @@
     grid-column: 2 / -1;
 }
 .right form {
-    height : 35rem;
+    height : 32rem;
     border : 1px solid grey;
     border-radius: .7rem;
     box-shadow: 5px 5px rgba(0,0,0,0.75);
@@ -112,6 +112,9 @@
     text-decoration: none;
     color : blue;
     margin-left : 0.3rem;
+}
+.transformation {
+    transform: translate(0,-20%);
 }
 .submit-button {
     border : 2px solid black;

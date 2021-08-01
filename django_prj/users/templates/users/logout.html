@@ -1,15 +1,45 @@
 {% extends 'products/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="ml-2">
-    <div class="container">
-      <section class="mb-4">
-        <div class="row wow fadeIn">
-          <div class='col-7'>
-            <h2> You have been logged out </h2>
-          </div>
-        </div>
-      </section>
+<div class="page">
+  <div class="left">
+    <div class="left-content">
+      <div>
+        <i class="fab fa-amazon"></i>
+      </div>
+      <div class="amazon-text">
+        amazonClone
+      </div>
+      <br>
+      <div>
+        <ul>
+          <li>AmazonBasics</li>
+          <li>Electronics</li>
+          <li>Fashion</li>
+          <li>Fitness</li>
+          <li>Gaming</li>
+        </ul>
+      </div>
     </div>
+  </div>
+  <div class="right">
+    
+      <div class="sign-up">
+        <div>
+          <h2>You have been logged out</h2>
+        </div>
+      </div>
+
+
+  </div>
+  <div class="footer">
+    <ul>
+      <li>Conditions of Use</li>
+      <li>Privacy Notice</li>
+      <li>Help</li>
+    </ul>
+    <h4>&copy; 1996-2021, Amazon.com, Inc. or its affiliates</h4>
+  </div>
 </div>
+
 {% endblock %}
