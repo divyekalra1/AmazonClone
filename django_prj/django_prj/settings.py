@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'phone_field',
     'products',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -128,9 +129,14 @@ LOGIN_REDIRECT_URL = 'homepage'
 
 LOGIN_URL = 'login'
 
+MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+MEDIA_URL = "/media/"
+
 if DEBUG:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+

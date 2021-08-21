@@ -1,10 +1,9 @@
 {% extends 'products/base.html' %}
 {% load products_extras %}
-
+{% load static %}
 {% block content %}
-
-<!--Section: Products v.3-->
-<section class="text-center mb-4">
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+<!-- <section class="text-center mb-4">
 
   <div class="row wow fadeIn">
 
@@ -14,8 +13,8 @@
       <div class="card">
 
         <div class="view overlay">
-          <!-- {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" {% endcomment %} -->
-          <!-- <img src="#Image URL here#" class="card-img-top"> -->
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top">
+          <img src="#Image URL here#" class="card-img-top">
           <a href="{% url 'detail-product' product.id %}">
             <div class="mask rgba-white-slight"></div>
           </a>
@@ -47,6 +46,107 @@
     {% endfor %}
   </div>
 
-</section>
-<!--Section: Products v.3-->
-{% endblock %}
+</section> -->
+<!-- Start of Header -->
+{% for group in request.user.groups.all %}
+
+<div class="homepage">
+  <div class="nav-bar">
+    <div class="header">
+      <div class="brand">
+        <a href="{% url 'homepage' %}">
+          <i class="fab fa-amazon"></i>
+        </a>
+      </div>
+      <div class="amazon-text">
+        <a href="{% url 'homepage' %}">
+          amazonClone
+        </a>
+      </div>
+      <div class="search-bar">
+        <input type="text">
+        <div class="search-rectangle">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="cart">
+        <div class="cart-content">
+          <i class="fas fa-shopping-cart"></i>
+          <label>Cart</label>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="dropdown-content">
+          {% if group.name == 'customer' %}
+          <a href="{% url 'logout' %}">Sign out</a>
+          <a href="#">Your Orders</a>
+          {% elif group.name == "vendor" %}
+          <a href="{% url 'logout' %}">Sign out</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="categories">
+      <ul>
+        <li>Electronics</li>
+        <li>Groceries</li>
+        <li>Furniture</li>
+        <li>Fashion</li>
+        <li>AmazonBasics</li>
+        <li>Bathroom Supplies</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="products">
+    {% for product in products %}
+    <a href="{% url 'detail-product' product.id %}">
+      <div class="card">
+        <div class="product-content">
+          <div class="image-content">
+            <div class="product-image">
+            </div>
+          </div>
+          <div class="product-info">
+            <label>{{ product.name }}</label>
+          </div>
+        </div>
+          {% if group.name == 'customer' %}
+          <div class="buttons">
+            <a href="#">
+              <div class="buy-now">
+                <label>Buy Now</label>
+              </div>
+            </a>
+            <a href="#">
+              <div class="add-to-cart">
+                <label>Add to Cart</label>
+              </div>
+            </a>
+          </div>
+          {% elif group.name == "vendor" %}
+          <div class="buttons">
+            <a href="#">
+              <div class="update">
+                <label>Update</label>
+              </div>
+            </a>
+            <a href="#">
+              <div class="delete">
+                <label>Delete</label>
+              </div>
+            </a>
+          </div>
+          {% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+  <!-- End of header -->
+
+  {% endblock %}

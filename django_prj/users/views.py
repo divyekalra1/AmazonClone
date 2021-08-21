@@ -11,4 +11,5 @@ def register(request):
             return redirect("login")
     else:
         form = RegistrationForm()
-    return render(request,'users/signup.html',{'form' : form, "title": "Sign Up"})
+    return render(request,'users/signup.html',{'form' : form, "title": "Register"})
+

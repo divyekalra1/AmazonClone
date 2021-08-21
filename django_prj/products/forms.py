@@ -7,5 +7,7 @@ class NewProduct(forms.ModelForm):
         fields = "__all__"
         exclude = ["date_added","vendor"]
         widgets = {
-            'description' : forms.Textarea(attrs={'cols': 60, 'rows': 6})
+            'description' : forms.Textarea(attrs={'class' : 'input-box2','style':'resize:none;'}),
+            'name': forms.TextInput(attrs={"class":"input-box1"}),
+            'price' : forms.NumberInput(attrs = {'input_type' :'numeric', 'class' : 'input-box3'}),
         }

@@ -1,8 +1,9 @@
 {% extends 'products/base.html' %}
-
-
+{% load products_extras %}
+{% load static %}
 {% block content %}
-      <h5>{{product.name}} :</h5>
+<link rel="stylesheet" href="{% static 'css/product-details.css' %}">
+<!-- <h5>{{product.name}} :</h5>
       <h5>{{product.description}}</h5><br>
       <h4>{{product.vendor}}</h4><br>
       <a class = "btn btn-info btn-sm " href = "{% url 'homepage' %}">Back</a>
@@ -10,5 +11,95 @@
       <a class = "btn btn-info btn-sm " href = "{% url 'delete-product' product.id %}">Delete</a>
       {% else %}
       <a class = "btn btn-info btn-sm " href = "#">Add To Cart</a>
-      {% endif %}
+      {% endif %} -->
+
+<!-- Start of Header -->
+{% for group in request.user.groups.all %}
+
+<div class="homepage">
+      <div class="nav-bar">
+            <div class="header">
+                  <div class="brand">
+                        <a href="{% url 'homepage' %}">
+                              <i class="fab fa-amazon"></i>
+                        </a>
+                  </div>
+                  <div class="amazon-text">
+                        <a href="{% url 'homepage' %}">
+                              amazonClone
+                        </a>
+                  </div>
+                  <div class="search-bar">
+                        <input type="text">
+                        <div class="search-rectangle">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                  </div>
+                  <div class="cart">
+                        <div class="cart-content">
+                              <i class="fas fa-shopping-cart"></i>
+                              <label>Cart</label>
+                        </div>
+                  </div>
+                  <div class="dropdown">
+                        <button class="dropbtn">
+                              <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="dropdown-content">
+                              {% if group.name == 'customer' %}
+                              <a href="{% url 'logout' %}">Sign out</a>
+                              <a href="#">Your Orders</a>
+                              {% elif group.name == "vendor" %}
+                              <a href="{% url 'logout' %}">Sign out</a>
+                              {% endif %}
+                        </div>
+                  </div>
+            </div>
+            <div class="categories">
+                  <ul>
+                        <li>Electronics</li>
+                        <li>Groceries</li>
+                        <li>Furniture</li>
+                        <li>Fashion</li>
+                        <li>AmazonBasics</li>
+                        <li>Bathroom Supplies</li>
+                  </ul>
+            </div>
+      </div>
+
+      <div class="product-detail">
+
+            <div class="back-arrow">
+                  <a href="{% url 'homepage' %}">
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+                  </a>
+            </div>
+
+            <div class="product-image">
+            </div>
+            <div class="product-name">
+                  <label>{{ product.name }}</label>
+            </div>
+            <div class="product-price">
+                  <label for="">$ {{ product.price }}</label>
+            </div>
+            <div class="product-vendor">
+                  Sold by <label>{{ product.vendor }}</label>
+            </div>
+            <div class="buttons">
+                  <a href="#">
+                        <div class="buy-now">
+                              <label>Buy Now</label>
+                        </div>
+                  </a>
+                  <a href="#">
+                        <div class="add-to-cart">
+                              <label>Add to Cart</label>
+                        </div>
+                  </a>
+            </div>
+      </div>
+      <!-- End of header -->
+      {% endfor %}
+</div>
 {% endblock %}

@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 class Product(models.Model):
     name = models.CharField(max_length = 30,blank = False, null = False)
+    product_image = models.ImageField(upload_to = "images/",blank = True,null = True)
     description = models.TextField(max_length = 200,blank = True)
     price = models.DecimalField(max_digits = 10, decimal_places = 2)
     date_added= models.DateTimeField(auto_now_add=True)

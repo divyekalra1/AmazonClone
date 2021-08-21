@@ -1,23 +1,6 @@
 {% extends 'products/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<!-- <div class="ml-2">
-      <div class="container">
-        <section class="mb-4">
-          <div class="row wow fadeIn">
-            <div class='col-5'>
-              <h1>Sign In</h1>
-              <h6>Don't have an account yet?<a href = "{% url 'register' %}">Sign Up</a>
-            </div>
-          </div>
-        </section>
-      </div>
-      <form method="POST">
-        {% csrf_token %}
-          {{form|crispy}}
-          <button class="btn btn-info" type="submit">Sign In</button>
-      </form><br>
-    </div> -->
 <div class="page">
   <div class="left">
     <div class="left-content">
@@ -54,13 +37,13 @@
         </label>
       </div>
       <div class="input-box1">
-        <input type="text" id="email/phone">
+        {{form.username}}
       </div>
       <div class = "password-text">
         <label for="password">Password</label>
       </div>
       <div class="input-box2">
-        <input type="password" id="password">
+        {{form.password}}
       </div>
       <button type="submit" class="submit-button">Continue</button>
       <div class = "form-policy">

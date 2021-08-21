@@ -24,15 +24,17 @@ def homepage(request):
 @login_required
 @authorized(allowed_users=['admin','vendor'])
 def newProduct(request):
-    form = NewProduct()
     if request.method == "POST":
         form = NewProduct(request.POST)
         form.instance.vendor = request.user
         if form.is_valid():
             form.save()
+            print("meowwwwwwwww")
             return redirect('homepage')
         # else:
         #     messages.error(request,"Could not create product")
+    else: 
+        form = NewProduct()
     context = {"form":form, "title":"New Product"}
     return render(request,'products/createProduct.html',context)
 

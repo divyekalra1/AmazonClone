@@ -1,11 +1,111 @@
 {% extends 'products/base.html' %}
 {% load crispy_forms_tags %}
-
-
+{% load static %}
 {% block content %}
-    <form method = "POST">
-      {% csrf_token %}
-    {{form|crispy}}
-    <button type = "submit">Create</button>
-    </form>
+{% load widget_tweaks %}
+
+
+<link rel="stylesheet" href="{% static 'css/product-new.css' %}">
+{% for group in request.user.groups.all %}
+
+<div class="new-product-page">
+      <div class="nav-bar">
+            <div class="header">
+                  <div class="brand">
+                        <a href="{% url 'homepage' %}">
+                              <i class="fab fa-amazon"></i>
+                        </a>
+                  </div>
+                  <div class="amazon-text">
+                        <a href="{% url 'homepage' %}">
+                              amazonClone
+                        </a>
+                  </div>
+                  <div class="search-bar">
+                        <input type="text">
+                        <div class="search-rectangle">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                  </div>
+                  <div class="cart">
+                        <div class="cart-content">
+                              <i class="fas fa-shopping-cart"></i>
+                              <label>Cart</label>
+                        </div>
+                  </div>
+                  <div class="dropdown">
+                        <button class="dropbtn">
+                              <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="dropdown-content">
+                              {% if group.name == 'customer' %}
+                              <a href="{% url 'logout' %}">Sign out</a>
+                              <a href="#">Your Orders</a>
+                              {% elif group.name == "vendor" %}
+                              <a href="{% url 'logout' %}">Sign out</a>
+                              {% endif %}
+                        </div>
+                  </div>
+            </div>
+
+            <div class="categories">
+                  <ul>
+                        <li>Electronics</li>
+                        <li>Groceries</li>
+                        <li>Furniture</li>
+                        <li>Fashion</li>
+                        <li>AmazonBasics</li>
+                        <li>Bathroom Supplies</li>
+                  </ul>
+            </div>
+      </div>
+      <form action="" method="POST">
+            {% csrf_token %}
+            <div class="product-detail">
+
+                  <div class="back-arrow">
+                        <a href="{% url 'homepage' %}">
+                              <i class="fas fa-arrow-alt-circle-left"></i>
+                        </a>
+                  </div>
+                  <div class="product-image">
+                        {{form.product_image | attr:"class : fileupload" }}
+                  </div>
+                  <div class="product-name">
+                        <div style="position: relative; top : 2rem">
+                              <label>Product Name</label>
+                        </div>
+                        {{form.name}}
+                  </div>
+
+                  <div class="product-desc">
+                        <div style="position: relative; top : 3.5rem">
+                              <label>Product Description</label>
+                        </div>
+                        {{form.description}}
+                  </div>
+
+                  <div class="product-price-new">
+                        <label>Price</label>
+                        <div class="product-price-content">
+                              <label>$</label>
+                              {{form.price}}
+                        </div>
+                  </div>
+
+                  <div class="buttons">
+                        <button type="submit" class="add-product">
+                              Add
+                        </button>
+                        <button type="reset" class="clear">
+                              Clear
+                        </button>
+
+                  </div>
+      </form>
+
+</div>
+<!-- End of header -->
+{% endfor %}
+
 {% endblock %}
